@@ -11,4 +11,4 @@ $coveralls = (Resolve-Path ".\packages\coveralls.net.*\tools\csmacnz.Coveralls.e
 
 & $openCover -register:user -target:$nunitConsole -targetargs:$testDLLs "-filter:$filters"
 & $reportGenerator -reports:results.xml -targetdir:coverage
-& $coveralls --opencover -i results.xml --repoToken $repoToken--commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
+& $coveralls --opencover -i results.xml --repoToken $repoToken --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
