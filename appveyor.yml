@@ -14,7 +14,8 @@ cache:
 before_build:
 - cmd: nuget restore .\Whetstone.sln
 build:
-  verbosity: minimal
+  project: .\Whetstone.sln
+  verbosity: normal
 test_script:
 - ps: >-
     .\coverage.ps1
