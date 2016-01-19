@@ -12,7 +12,6 @@ namespace System
     public static class FunctionalExtensions
     {
         /// <summary>
-        /// Applies a function on an object of type TSource and returns the resulting object (of type TResult)
         /// Maps an object of type TSource to an object of type TResult by applying the supplied function to it
         /// </summary>
         /// <typeparam name="TSource">The type of the source object</typeparam>
@@ -20,6 +19,9 @@ namespace System
         /// <param name="this">The source object</param>
         /// <param name="func">The function to apply to the source object</param>
         /// <returns>The result of the provided function applied to the source object</returns>
+        /// <remarks>
+        /// This really comes in handy when you want to create fluent code by chaining methods together
+        /// </remarks>
         /// <example>
         /// Parse an integer from a string
         /// <code>
