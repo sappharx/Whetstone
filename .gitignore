@@ -1,4 +1,6 @@
 # ignore coverage results
+results.xml
+TestResult.xml
 coverage/
 
 

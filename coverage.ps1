@@ -1,6 +1,6 @@
 ﻿$repoToken = "CWDpFsufbHnIxu1NeoLm2rBuOT12lol9U"
 
-$testDLLs = ".\Tests\Whetstone.FunctionalExtensions.Tests\bin\Debug\Whetstone.FunctionalExtensions.Tests.dll"
+$testDLLs = ".\Tests\Whetstone.FunctionalExtensions.Tests\bin\$env:CONFIGURATION\Whetstone.FunctionalExtensions.Tests.dll"
 $filters = "+[Whetstone.*]* -[Whetstone.*.Tests]*"
 
 # executable file paths
