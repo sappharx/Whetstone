@@ -12,14 +12,14 @@ environment:
 cache:
 - packages -> **\packages.config
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore .\Whetstone.sln
 build:
   verbosity: minimal
 test_script:
 - ps: >-
     .\coverage.bat
 
-    $coveralls = (Resolve-Path ".\packages\coveralls.net.*\tools\csmancz.coveralls.exe").ToString()
+    $coveralls = (Resolve-Path ".\packages\coveralls.net.*\tools\csmacnz.Coveralls.exe").ToString()
 
     $env:APPVEYOR_BUILD_NUMBER
 
