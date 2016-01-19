@@ -1,13 +1,26 @@
 version: 0.1.{build}
+configuration: Debug
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: CWDpFsufbHnIxu1NeoLm2rBuOT12lol9U
 cache:
 - packages -> **\packages.config
 before_build:
 - cmd: nuget restore
 build:
   verbosity: minimal
+test_script:
+- ps: >-
+    .\coverage.bat
+
+    $coveralls = (Resolve-Path ".\packages\coveralls.net.*\tools\csmancz.coveralls.exe").ToString()
+
+    $env:APPVEYOR_BUILD_NUMBER
+
+    & $coveralls --opencover -i results.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor

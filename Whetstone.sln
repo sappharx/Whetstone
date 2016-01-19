@@ -7,7 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whetstone.FunctionalExtensi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D38BBD3-B666-441E-8525-85936E9E9BEE}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		coverage.bat = coverage.bat
 		README.md = README.md
+		tests.bat = tests.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whetstone.FunctionalExtensions.Tests", "Tests\Whetstone.FunctionalExtensions.Tests\Whetstone.FunctionalExtensions.Tests.csproj", "{30A48D44-14EB-4EAD-93DD-1143EF89C95C}"
