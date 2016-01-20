@@ -1,13 +1,21 @@
 version: 0.1.{build}
+configuration: Debug
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: CWDpFsufbHnIxu1NeoLm2rBuOT12lol9U
 cache:
 - packages -> **\packages.config
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore .\Whetstone.sln
 build:
-  verbosity: minimal
+  project: .\Whetstone.sln
+  verbosity: normal
+test_script:
+- ps: >-
+    .\coverage.ps1
