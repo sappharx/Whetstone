@@ -46,18 +46,12 @@
         /// <summary>
         /// Gets the number of elements contained in the collection
         /// </summary>
-        public int Count
-        {
-            get { return Collection.Count; }
-        }
+        public int Count => Collection.Count;
 
         /// <summary>
         /// Gets a value indicating whether the collection is read-only
         /// </summary>
-        public bool IsReadOnly
-        {
-            get { return Collection.IsReadOnly; }
-        }
+        public bool IsReadOnly => Collection.IsReadOnly;
 
         /// <summary>
         /// Adds an item to the collection
@@ -81,10 +75,7 @@
         /// </summary>
         /// <param name="item">The object to locate in the object</param>
         /// <returns>True if item is found in the collection; otherwise, false.</returns>
-        public bool Contains(T item)
-        {
-            return Collection.Contains(item);
-        }
+        public bool Contains(T item) => Collection.Contains(item);
 
         /// <summary>
         /// Copies the elements of the collection to a <see cref="System.Array"/> starting at a particular index
@@ -103,10 +94,7 @@
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>A <see cref="IEnumerator{T}"/> that can be used to iterate through the collection</returns>
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Collection.GetEnumerator();
-        }
+        public IEnumerator<T> GetEnumerator() => Collection.GetEnumerator();
 
         /// <summary>
         /// Removes the first occurence of a specific object from the collection
@@ -116,19 +104,13 @@
         /// True if item was successfully removed from the collection; otherwise, false.
         /// This method also returns false if item is not found in the original collection.
         /// </returns>
-        public bool Remove(T item)
-        {
-            return Collection.Remove(item);
-        }
+        public bool Remove(T item) => Collection.Remove(item);
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>A <see cref="IEnumerator"/> that can be used to iterate through the collection</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (Collection as IEnumerable).GetEnumerator();
-        } 
+        IEnumerator IEnumerable.GetEnumerator() => (Collection as IEnumerable).GetEnumerator();
 
         #endregion
     }

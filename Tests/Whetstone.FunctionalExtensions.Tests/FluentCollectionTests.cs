@@ -114,7 +114,7 @@ namespace Whetstone.FunctionalExtensions.Tests
             enumerator.MoveNext().Should().BeFalse("because there are no more elements");
         }
 
-        private FluentCollection<T> GetEmptyFluentCollectionFromList<T>()
+        private static FluentCollection<T> GetEmptyFluentCollectionFromList<T>()
             => new List<T>()
                 .Map(coll => new FluentCollection<T>(coll));
     }
