@@ -6,16 +6,19 @@
     /// <typeparam name="T">The type of the elements in the collection.</typeparam>
     public class FluentCollection<T> : ICollection<T>
     {
-        private ICollection<T> _collection;
-
         /// <summary>
         /// Initializes a new <see cref="FluentCollection{T}"/> object
         /// </summary>
         /// <param name="collection">The <see cref="ICollection{T}"/> object to wrap</param>
         public FluentCollection(ICollection<T> collection)
         {
-            _collection = collection;
+            Collection = collection;
         }
+
+        /// <summary>
+        /// Gets the underlying collection
+        /// </summary>
+        public ICollection<T> Collection { get; }
 
         /// <summary>
         /// Adds an item to the collection
@@ -24,7 +27,7 @@
         /// <returns>The collection object itself</returns>
         public FluentCollection<T> Add(T item)
         {
-            _collection.Add(item);
+            Collection.Add(item);
             return this;
         }
 
@@ -34,7 +37,7 @@
         /// <returns>The collection object itself</returns>
         public FluentCollection<T> Clear()
         {
-            _collection.Clear();
+            Collection.Clear();
             return this;
         }
 
@@ -45,7 +48,7 @@
         /// </summary>
         public int Count
         {
-            get { return _collection.Count; }
+            get { return Collection.Count; }
         }
 
         /// <summary>
@@ -53,7 +56,7 @@
         /// </summary>
         public bool IsReadOnly
         {
-            get { return _collection.IsReadOnly; }
+            get { return Collection.IsReadOnly; }
         }
 
         /// <summary>
@@ -62,7 +65,7 @@
         /// <param name="item">The object to add to the collection</param>
         void ICollection<T>.Add(T item)
         {
-            _collection.Add(item);
+            Collection.Add(item);
         }
 
         /// <summary>
@@ -70,7 +73,7 @@
         /// </summary>
         void ICollection<T>.Clear()
         {
-            _collection.Clear();
+            Collection.Clear();
         }
 
         /// <summary>
@@ -80,7 +83,7 @@
         /// <returns>True if item is found in the collection; otherwise, false.</returns>
         public bool Contains(T item)
         {
-            return _collection.Contains(item);
+            return Collection.Contains(item);
         }
 
         /// <summary>
@@ -93,7 +96,7 @@
         /// <param name="arrayIndex">The zero-based index in array at which copying begins</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
-            _collection.CopyTo(array, arrayIndex);
+            Collection.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -102,7 +105,7 @@
         /// <returns>A <see cref="IEnumerator{T}"/> that can be used to iterate through the collection</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            return _collection.GetEnumerator();
+            return Collection.GetEnumerator();
         }
 
         /// <summary>
@@ -115,7 +118,7 @@
         /// </returns>
         public bool Remove(T item)
         {
-            return _collection.Remove(item);
+            return Collection.Remove(item);
         }
 
         /// <summary>
@@ -124,7 +127,7 @@
         /// <returns>A <see cref="IEnumerator"/> that can be used to iterate through the collection</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _collection.GetEnumerator() as IEnumerator;
+            return (Collection as IEnumerable).GetEnumerator();
         } 
 
         #endregion
