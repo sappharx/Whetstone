@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Whetstone.FunctionalExtensions
+﻿namespace System.Collections.Generic
 {
     /// <summary>
     /// Provides some fluent APIs to certain types

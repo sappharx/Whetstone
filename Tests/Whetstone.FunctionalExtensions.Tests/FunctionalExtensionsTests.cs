@@ -39,7 +39,7 @@ namespace Whetstone.FunctionalExtensions.Tests
         [Test]
         public void Map_HandlesMappingEachElementInAnIEnumerable()
         {
-            new[] {1, 2, 3}.Map<int, string>(x => x.ToString())//.Should().BeAssignableTo<>()
+            new[] {1, 2, 3}.Map<int, string>(x => x.ToString())
                 .Should().BeAssignableTo<IEnumerable<string>>("because Map mapped the integers to strings");
         }
 
