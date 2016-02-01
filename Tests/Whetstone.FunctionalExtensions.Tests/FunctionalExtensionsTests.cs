@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -23,10 +24,23 @@ namespace Whetstone.FunctionalExtensions.Tests
         }
 
         [Test]
-        public void Map_HandlesIEnumberableInput()
+        public void Map_HandlesMappingAnIEnumberableToAnotherType()
         {
+            new[] {1, 2, 3}.Map(arr => arr.Aggregate((a, b) => a + b))
+                .Should().Be(6, "because Map can map an IEnumerable<T> to a non-enumerable type");
+
+            new[] {'a', 'b', 'c'}.Map(arr => new string(arr))
+                .Should().Be("abc", "because Map can map an IEnumerable<char> to string");
+
             new[] { 1, 2, 3 }.Map(arr => new List<int>(arr))
-                .Should().BeOfType<List<int>>("because Map can handle IEnumerable<T> input");
+                .Should().BeOfType<List<int>>("because Map can map an IEnumerable<T> to another IEnumerable<T> implementation");
+        }
+
+        [Test]
+        public void Map_HandlesMappingEachElementInAnIEnumerable()
+        {
+            new[] {1, 2, 3}.Map<int, string>(x => x.ToString())//.Should().BeAssignableTo<>()
+                .Should().BeAssignableTo<IEnumerable<string>>("because Map mapped the integers to strings");
         }
 
         #endregion
