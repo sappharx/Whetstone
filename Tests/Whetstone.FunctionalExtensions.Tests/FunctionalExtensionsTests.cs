@@ -31,6 +31,26 @@ namespace Whetstone.FunctionalExtensions.Tests
 
         #endregion
 
+        #region Tee() tests
+
+        [Test]
+        public void Tee_ReturnsTheInputObject()
+        {
+            "Hello".Tee(Console.WriteLine).Should().Be("Hello", "because Tee return the input object");
+        }
+
+        [Test]
+        public void Tee_PerformsActions()
+        {
+            var destination = string.Empty;
+            Action<string> copy = s => destination = s;
+
+            "Hello".Tee(copy);
+            destination.Should().Be("Hello", "because Tee performed the provided action");
+        }
+
+        #endregion
+
         #region When() tests
 
         [Test]

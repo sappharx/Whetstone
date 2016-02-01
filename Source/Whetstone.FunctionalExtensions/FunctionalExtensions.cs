@@ -27,6 +27,25 @@
             => transform(source);
 
         /// <summary>
+        /// Performs an action on an object and returns the object (e.g. writing it to the console or a log
+        /// </summary>
+        /// <typeparam name="T">The type of object to be acted upon</typeparam>
+        /// <param name="this">The object to be acted upon</param>
+        /// <param name="action">The action to perform on the object</param>
+        /// <returns>The object that was acted upon</returns>
+        /// <example>
+        /// Write an object to the console
+        /// <code>
+        /// "Hello world".Tee(Console.WriteLine);
+        /// </code>
+        /// </example>
+        public static T Tee<T>(this T @this, Action<T> action)
+        {
+            action(@this);
+            return @this;
+        }
+
+        /// <summary>
         /// Applies a function to the source object provided the predicate evaluates to true
         /// </summary>
         /// <typeparam name="T">The type of the source object</typeparam>
