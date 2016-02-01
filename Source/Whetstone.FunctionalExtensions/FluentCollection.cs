@@ -110,7 +110,7 @@
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>A <see cref="IEnumerator"/> that can be used to iterate through the collection</returns>
-        IEnumerator IEnumerable.GetEnumerator() => (Collection as IEnumerable).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) Collection).GetEnumerator();
 
         #endregion
     }

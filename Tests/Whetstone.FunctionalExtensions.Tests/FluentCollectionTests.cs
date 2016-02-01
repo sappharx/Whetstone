@@ -45,7 +45,7 @@ namespace Whetstone.FunctionalExtensions.Tests
         public void Add_HandlesFallingBackToICollection()
         {
             var coll = GetEmptyFluentCollectionFromList<int>();
-            (coll as ICollection<int>).Add(1);
+            ((ICollection<int>) coll).Add(1);
             coll.Count.Should().Be(1, "because ICollection<T>.Add() works");
         }
 
@@ -53,8 +53,8 @@ namespace Whetstone.FunctionalExtensions.Tests
         public void Clear_HandlesFallingBackToICollection()
         {
             var coll = GetEmptyFluentCollectionFromList<int>();
-            (coll as ICollection<int>).Add(1);
-            (coll as ICollection<int>).Clear();
+            ((ICollection<int>) coll).Add(1);
+            ((ICollection<int>) coll).Clear();
             coll.Count.Should().Be(0, "because ICollection<T>.Clear() works");
         }
 
