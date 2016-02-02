@@ -79,6 +79,7 @@
     <Compile Include="FluentCollectionTests.cs" />
     <Compile Include="FluentExtensionsTests.cs" />
     <Compile Include="FunctionalExtensionsTests.cs" />
+    <Compile Include="IntExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
