@@ -50,7 +50,7 @@ namespace Whetstone.FunctionalExtensions.Tests
         [Test]
         public void Tee_ReturnsTheInputObject()
         {
-            "Hello".Tee(Console.WriteLine).Should().Be("Hello", "because Tee return the input object");
+            "Hello".Tee(Console.WriteLine).Should().Be("Hello", "because Tee returns the input object");
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Whetstone.FunctionalExtensions.Tests
             Action<string> copy = s => destination = s;
 
             "Hello".Tee(copy);
-            destination.Should().Be("Hello", "because Tee performed the provided action");
+            destination.Should().Be("Hello", "because Tee performs the provided action");
         }
 
         #endregion

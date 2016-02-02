@@ -14,7 +14,7 @@ namespace Whetstone.FunctionalExtensions.Tests
         public void GetBoundedValue_HandlesNonNullInputValue(int val, int min, int max, int answer)
         {
             val.GetBoundedValue(min, max)
-                .Should().Be(answer, "because GetBoundedValue hanldes non-null input values");
+                .Should().Be(answer, "because GetBoundedValue handles non-null input values");
         }
 
         [TestCaseSource(typeof(NullableInputWithMinCases))]
@@ -36,9 +36,9 @@ namespace Whetstone.FunctionalExtensions.Tests
     {
         public IEnumerator GetEnumerator()
         {
-            yield return new object[] {-1, 0, 2, 0};
-            yield return new object[] { 1, 0, 2, 1 };
-            yield return new object[] { 3, 0, 2, 2 };
+            yield return new object[] {-1, 0, 2, 0};    // min controls
+            yield return new object[] { 1, 0, 2, 1 };   // value controls
+            yield return new object[] { 3, 0, 2, 2 };   // max controls
         }
     }
 
@@ -46,10 +46,10 @@ namespace Whetstone.FunctionalExtensions.Tests
     {
         public IEnumerator GetEnumerator()
         {
-            yield return new object[] { null, -1, 0, 0 };
-            yield return new object[] { null, 1, 0, 1 };
-            yield return new object[] { -1, 0, 0, 0 };
-            yield return new object[] { 1, 0, 0, 1 };
+            yield return new object[] { null, -1, 0, 0 };   // min controls over default
+            yield return new object[] { null, 1, 0, 1 };    // default controls
+            yield return new object[] { -1, 0, 0, 0 };      // min controls over value
+            yield return new object[] { 1, 0, 0, 1 };       // value controls
         }
     }
 
@@ -57,12 +57,12 @@ namespace Whetstone.FunctionalExtensions.Tests
     {
         public IEnumerator GetEnumerator()
         {
-            yield return new object[] { null, -1, 0, 2, 0 };
-            yield return new object[] { null, 1, 0, 2, 1 };
-            yield return new object[] { null, 3, 0, 2, 2 };
-            yield return new object[] { -1, 0, 0, 2, 0 };
-            yield return new object[] { 1, 0, 0, 2, 1 };
-            yield return new object[] { 3, 0, 0, 2, 2 };
+            yield return new object[] { null, -1, 0, 2, 0 };    // min controls over default
+            yield return new object[] { null, 1, 0, 2, 1 };     // default controls
+            yield return new object[] { null, 3, 0, 2, 2 };     // max controls over default
+            yield return new object[] { -1, 0, 0, 2, 0 };       // min controls over value
+            yield return new object[] { 1, 0, 0, 2, 1 };        // value controls
+            yield return new object[] { 3, 0, 0, 2, 2 };        // max controls over value
         }
     }
 }
