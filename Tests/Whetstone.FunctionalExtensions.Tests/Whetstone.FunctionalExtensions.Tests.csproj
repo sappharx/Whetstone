@@ -76,6 +76,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="DisposableTests.cs" />
     <Compile Include="FluentCollectionTests.cs" />
     <Compile Include="FluentExtensionsTests.cs" />
     <Compile Include="FunctionalExtensionsTests.cs" />

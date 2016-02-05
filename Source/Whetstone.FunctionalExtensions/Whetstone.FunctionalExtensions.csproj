@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Disposable.cs" />
     <Compile Include="FluentCollection.cs" />
     <Compile Include="FluentExtensions.cs" />
     <Compile Include="FunctionalExtensions.cs" />
