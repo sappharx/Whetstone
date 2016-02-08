@@ -1,7 +1,7 @@
 ﻿$repoToken = "CWDpFsufbHnIxu1NeoLm2rBuOT12lol9U"
 
-$testDLLs = "..\Tests\Whetstone.FunctionalExtensions.Tests\bin\$env:CONFIGURATION\Whetstone.FunctionalExtensions.Tests.dll"
-$filters = "+[Whetstone.*]* -[Whetstone.*.Tests]*"
+$testDLLs = "..\Tests\Whetstone.Tests\bin\$env:CONFIGURATION\Whetstone.Tests.dll"
+$filters = "+[Whetstone*]* -[Whetstone*.Tests]*"
 
 # executable file paths
 $nunitConsole = (Resolve-Path "..\packages\NUnit.Console.*\tools\nunit3-console.exe").ToString()
