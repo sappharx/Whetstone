@@ -90,9 +90,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\Whetstone.FunctionalExtensions\Whetstone.FunctionalExtensions.csproj">
+    <ProjectReference Include="..\..\Source\Whetstone.FunctionalExtensions\Whetstone.csproj">
       <Project>{47ab861c-6106-4735-8b78-d4ec8b185253}</Project>
-      <Name>Whetstone.FunctionalExtensions</Name>
+      <Name>Whetstone</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

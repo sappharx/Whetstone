@@ -7,8 +7,8 @@
     <ProjectGuid>{47AB861C-6106-4735-8B78-D4EC8B185253}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Whetstone.FunctionalExtensions</RootNamespace>
-    <AssemblyName>Whetstone.FunctionalExtensions</AssemblyName>
+    <RootNamespace>Whetstone</RootNamespace>
+    <AssemblyName>Whetstone</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Whetstone.FunctionalExtensions.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Whetstone.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
