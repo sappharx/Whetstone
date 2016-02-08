@@ -1,5 +1,5 @@
 version: 0.2.0.{build}
-configuration: Release
+configuration: Debug
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -18,4 +18,4 @@ build:
   verbosity: normal
 test_script:
 - ps: >-
-    .\coverage.ps1
+    .\Scripts\coverage.ps1
