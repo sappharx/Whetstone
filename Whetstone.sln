@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whetstone", "Source\Whetstone.FunctionalExtensions\Whetstone.csproj", "{47AB861C-6106-4735-8B78-D4EC8B185253}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D38BBD3-B666-441E-8525-85936E9E9BEE}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -17,20 +15,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whetstone.FunctionalExtensi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1906341D-06FA-4060-8391-CDACCEC3CDAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whetstone", "Source\Whetstone\Whetstone.csproj", "{47AB861C-6106-4735-8B78-D4EC8B185253}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{D727239F-6C0F-496F-8137-7FA7779D0739}"
+	ProjectSection(SolutionItems) = preProject
+		Build.proj = Build.proj
+		.build\MSBuild.Community.Tasks.dll = .build\MSBuild.Community.Tasks.dll
+		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47AB861C-6106-4735-8B78-D4EC8B185253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47AB861C-6106-4735-8B78-D4EC8B185253}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47AB861C-6106-4735-8B78-D4EC8B185253}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47AB861C-6106-4735-8B78-D4EC8B185253}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30A48D44-14EB-4EAD-93DD-1143EF89C95C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30A48D44-14EB-4EAD-93DD-1143EF89C95C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30A48D44-14EB-4EAD-93DD-1143EF89C95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30A48D44-14EB-4EAD-93DD-1143EF89C95C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47AB861C-6106-4735-8B78-D4EC8B185253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47AB861C-6106-4735-8B78-D4EC8B185253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47AB861C-6106-4735-8B78-D4EC8B185253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47AB861C-6106-4735-8B78-D4EC8B185253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,7 +16,7 @@ namespace Whetstone.FunctionalExtensions.Tests
                 .ToString();
 
             new StringBuilder()
-                .AppendFormattedLine("{0}-{1}", new object[] {"foo", "bar"})
+                .AppendFormattedLine("{0}-{1}", "foo", "bar")
                 .ToString()
                 .Should().Be(expected, "because AppendFormattedLine() works");
         }
