@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Whetstone.FunctionalExtensions.Tests
+namespace Whetstone.Tests
 {
     [TestFixture]
     public class FluentCollectionTests

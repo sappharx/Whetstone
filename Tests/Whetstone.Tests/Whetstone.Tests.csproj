@@ -6,8 +6,8 @@
     <ProjectGuid>{30A48D44-14EB-4EAD-93DD-1143EF89C95C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Whetstone.FunctionalExtensions.Tests</RootNamespace>
-    <AssemblyName>Whetstone.FunctionalExtensions.Tests</AssemblyName>
+    <RootNamespace>Whetstone.Tests</RootNamespace>
+    <AssemblyName>Whetstone.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

@@ -3,7 +3,7 @@ using System.Collections;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Whetstone.FunctionalExtensions.Tests
+namespace Whetstone.Tests
 {
     [TestFixture]
     public class IntExtensionsTests

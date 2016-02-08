@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Whetstone.FunctionalExtensions.Tests")]
+[assembly: AssemblyTitle("Whetstone.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Whetstone.FunctionalExtensions.Tests")]
+[assembly: AssemblyProduct("Whetstone.Tests")]
 [assembly: AssemblyCopyright("Copyright © Vincent Sisk 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
