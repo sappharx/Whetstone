@@ -1,4 +1,4 @@
-version: 0.2.0.{build}
+version: 0.2.2.{build}
 configuration: Debug
 assembly_info:
   patch: true
