@@ -36,6 +36,10 @@ namespace System
         /// <param name="source">The source object</param>
         /// <param name="transform">The function to apply to the source object</param>
         /// <returns>The result of the provided function applied to the source object</returns>
+        /// <remarks>
+        /// This method makes the most sense when the transform function is CPU-intensive;
+        /// if it's IO-bound, it might make more sense to pass an async function to the sync version of this method.
+        /// </remarks>
         /// <example>
         /// Parse an integer from a string
         /// <code>
@@ -75,6 +79,10 @@ namespace System
         /// <param name="this">The object to be acted upon</param>
         /// <param name="action">The action to perform on the object</param>
         /// <returns>The object that was acted upon</returns>
+        /// <remarks>
+        /// This method makes the most sense when the action is CPU-intensive;
+        /// if it's IO-bound, it might make more sense to pass an async function to the sync version of this method.
+        /// </remarks>
         /// <example>
         /// Write an object to the console
         /// <code>
@@ -151,5 +159,84 @@ namespace System
         /// </example>
         public static T When<T>(this T source, Func<T, bool> predicate, Func<T, T> transform)
             => predicate(source) ? transform(source) : source;
+
+        /// <summary>
+        /// Asynchronously applies a function to the source object provided the predicate evaluates to true
+        /// </summary>
+        /// <typeparam name="T">The type of the source object</typeparam>
+        /// <param name="source">The source object</param>
+        /// <param name="predicate">A predicate expression to evaluate to determine if the transformation should take place</param>
+        /// <param name="transform">The transformation function to apply to the source object</param>
+        /// <returns>
+        /// If the predicate evaluates to true, the result of applying the transformation function to the source object;
+        /// otherwise, the source object.
+        /// </returns>
+        /// <remarks>
+        /// This method makes the most sense when the transform function is CPU-intensive;
+        /// if it's IO-bound, it might make more sense to pass an async function to the sync version of this method.
+        /// </remarks>
+        /// <example>
+        /// Repeat a string if true
+        /// <code>
+        /// int a = await "abc".WhenAsync(true, s => s + s);   a == "abcabc"
+        /// int b = await "abc".WhenAsync(false, s => s + s);  b == "abc"
+        /// </code>
+        /// </example>
+        public static async Task<T> WhenAsync<T>(this T source, bool predicate, Func<T, T> transform)
+            => predicate ? await Task.Run(() => transform(source)) : source;
+
+        /// <summary>
+        /// Asynchronously applies a function to the source object provided the predicate evaluates to true
+        /// </summary>
+        /// <typeparam name="T">The type of the source object</typeparam>
+        /// <param name="source">The source object</param>
+        /// <param name="predicate">A predicate function to evaulate to determine if the transformation should take place</param>
+        /// <param name="transform">The transformation function to apply to the source object</param>
+        /// <returns>
+        /// If the predicate evaluates to true, the result of applying the transformation function to the source object;
+        /// otherwise, the source object.
+        /// </returns>
+        /// <remarks>
+        /// Both the predicate and transform functions will be run asynchronously.
+        /// This method makes the most sense when the predicate and/or transform function are CPU-intensive;
+        /// if either function is IO-bound, it might make more sense to pass an async function to the sync version of this method.
+        /// </remarks>
+        /// <example>
+        /// Double a number if allowed to
+        /// <code>
+        /// bool isAllowed = true;
+        /// int a = await 12.WhenAsync(() => isAllowed, x => x * 2);   a == 24
+        /// isAllowed = false;
+        /// int b = await 13.WhenAsync(() => isAllowed, x => x * 2);   b == 13
+        /// </code>
+        /// </example>
+        public static async Task<T> WhenAsync<T>(this T source, Func<bool> predicate, Func<T, T> transform)
+            => await Task.Run(predicate) ? await Task.Run(() => transform(source)) : source;
+
+        /// <summary>
+        /// Asynchronously applies a function to the source object provided the predicate evaluates to true
+        /// </summary>
+        /// <typeparam name="T">The type of the source object</typeparam>
+        /// <param name="source">The source object</param>
+        /// <param name="predicate">A predicate function to evaulate to determine if the transformation should take place</param>
+        /// <param name="transform">The transformation function to apply to the source object</param>
+        /// <returns>
+        /// <remarks>
+        /// Both the predicate and transform functions will be run asynchronously.
+        /// This method makes the most sense when the predicate and/or transform function are CPU-intensive;
+        /// if either function is IO-bound, it might make more sense to pass an async function to the sync version of this method.
+        /// </remarks>
+        /// If the predicate evaluates to true, the result of applying the transformation function to the source object;
+        /// otherwise, the source object.
+        /// </returns>
+        /// <example>
+        /// Divide an integer in half only if it is even
+        /// <code>
+        /// int a = await 12.WhenAsync(x => x % 2 == 0, x => x / 2);   a == 6
+        /// int b = await 13.WhenAsync(x => x % 2 == 0, x => x / 2);   b == 13
+        /// </code>
+        /// </example>
+        public static async Task<T> WhenAsync<T>(this T source, Func<T, bool> predicate, Func<T, T> transform)
+            => await Task.Run(() => predicate(source)) ? await Task.Run(() => transform(source)) : source;
     }
 }

@@ -114,7 +114,6 @@ namespace Whetstone.Tests
         [Test]
         public void When_HandlesBooleanParameter()
         {
-            // test overload version where predicate is bool
             "abc".When(true, s => s + s).Should().Be("abcabc", "because predicate is true");
             "abc".When(false, s => s + s).Should().Be("abc", "because predicate is false");
         }
@@ -122,7 +121,6 @@ namespace Whetstone.Tests
         [Test]
         public void When_HandlesFuncParameterWithNoParameter()
         {
-            // test overload version where predicate is Func<bool>
             12.When(() => true, x => x * 2).Should().Be(24, "because predicate evaluates to true");
             13.When(() => false, x => x * 2).Should().Be(13, "because predicate evaluates to false");
         }
@@ -130,9 +128,35 @@ namespace Whetstone.Tests
         [Test]
         public void When_HandlesFuncParameterWithParamterOfTypeT()
         {
-            // test overload version where predicate is Func<T, bool>
-            12.When(x => x % 2 == 0, x => x / 2).Should().Be(6, "because predicate evaluates to true");
-            13.When(x => x % 2 == 0, x => x / 2).Should().Be(13, "because predicate evaluates to false");
+            Func<int, bool> isEven = x => x % 2 == 0;
+            12.When(isEven, x => x / 2).Should().Be(6, "because predicate evaluates to true");
+            13.When(isEven, x => x / 2).Should().Be(13, "because predicate evaluates to false");
+        }
+
+        #endregion
+
+        #region WhenAsync() tests
+
+        [Test]
+        public async Task WhenAsync_HandlesBooleanParameter()
+        {
+            (await "abc".WhenAsync(true, s => s + s)).Should().Be("abcabc", "because predicate is true");
+            (await "abc".WhenAsync(false, s => s + s)).Should().Be("abc", "because predicate is false");
+        }
+
+        [Test]
+        public async Task WhenAsync_HandlesFuncParameterWithNoParameter()
+        {
+            (await 12.WhenAsync(() => true, x => x * 2)).Should().Be(24, "because predicate evaluates to true");
+            (await 13.WhenAsync(() => false, x => x * 2)).Should().Be(13, "because predicate evaluates to false");
+        }
+
+        [Test]
+        public async Task WhenAsync_HandlesFuncParameterWithParamterOfTypeT()
+        {
+            Func<int, bool> isEven = x => x % 2 == 0;
+            (await 12.WhenAsync(isEven, x => x / 2)).Should().Be(6, "because predicate evaluates to true");
+            (await 13.WhenAsync(isEven, x => x / 2)).Should().Be(13, "because predicate evaluates to false");
         }
 
         #endregion
