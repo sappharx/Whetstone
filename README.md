@@ -19,11 +19,6 @@ Using the `Map()` extension method
         .Map(int.Parse)
         .Map(x => x * 2);   // number is an int and has a value of 24
 
-Using the `Map()` extension method with an `IEnumerable<T>`, where you want to map each item
-
-    var numbers = new List<string>() {"1", "2", "3"}
-        .Map<string, int>(int.Parse);   // numbers is a List<int>
-
 # Motivation
 After watching [Functional Programming with C#](
 https://app.pluralsight.com/library/courses/functional-programming-csharp)
@@ -42,7 +37,7 @@ then searching for 'Whetstone'.
 coming soon
 
 # Contributing
-coming soon
+Fork it. Fix or improve it. Submit a pull request.
 
 # License
 MIT: http://vsisk.mit-license.org/

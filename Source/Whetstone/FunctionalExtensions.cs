@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace System
+﻿namespace System
 {
     /// <summary>
     /// Provides some functional capabilities to all types
@@ -28,35 +25,6 @@ namespace System
         /// </example>
         public static TResult Map<TSource, TResult>(this TSource source, Func<TSource, TResult> transform)
             => transform(source);
-
-        /// <summary>
-        /// Maps an <see cref="IEnumerable{TSource}"/> to an<see cref="IEnumerable{TResult}"/> 
-        /// by applying the supplied function to each object in the source enumerable object
-        /// </summary>
-        /// <typeparam name="TSource">The type of the objects in the source enumerable object</typeparam>
-        /// <typeparam name="TResult">The type of the objects in the result enumerable object</typeparam>
-        /// <param name="source">The source enumerable object</param>
-        /// <param name="transform">The function to apply to each object in the source enumerable object</param>
-        /// <returns>A new enumerable object whose objects have had the provided function applied to them</returns>
-        /// <example>
-        /// Convert an array of integers to an array of strings
-        /// <code>
-        /// var strings = new[] {1, 2, 3}.Map&lt;int, string&gt;(x => x.ToString());
-        /// </code>
-        /// </example>
-        /// <remarks>
-        /// The type parameters must be explicit for this overload of the Map() function, because 
-        /// the C# compiler's type inference will give precendence to the other Map() overload, i.e.
-        /// <code>
-        /// // applies ToString() to the int array, instead of each int separately
-        /// new[] {1, 2, 3}.Map(x => x.ToString());
-        /// </code>
-        /// </remarks>
-        public static IEnumerable<TResult> Map<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> transform)
-            => source.Aggregate(
-                new List<TResult>().AsFluentCollection(),
-                (output, input) => output.Add(input.Map(transform))
-            );
 
         /// <summary>
         /// Performs an action on an object and returns the object (e.g. writing it to the console or a log

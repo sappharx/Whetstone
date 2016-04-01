@@ -36,13 +36,6 @@ namespace Whetstone.Tests
                 .Should().BeOfType<List<int>>("because Map can map an IEnumerable<T> to another IEnumerable<T> implementation");
         }
 
-        [Test]
-        public void Map_HandlesMappingEachElementInAnIEnumerable()
-        {
-            new[] {1, 2, 3}.Map<int, string>(x => x.ToString())
-                .Should().BeAssignableTo<IEnumerable<string>>("because Map mapped the integers to strings");
-        }
-
         #endregion
 
         #region Tee() tests
