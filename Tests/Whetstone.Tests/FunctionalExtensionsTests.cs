@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -34,6 +35,35 @@ namespace Whetstone.Tests
 
             new[] { 1, 2, 3 }.Map(arr => new List<int>(arr))
                 .Should().BeOfType<List<int>>("because Map can map an IEnumerable<T> to another IEnumerable<T> implementation");
+        }
+
+        #endregion
+
+        #region MapAsync() tests
+
+        [Test]
+        public async Task MapAsync_HandlesStaticMethods()
+        {
+            (await "123".MapAsync(int.Parse)).Should().Be(123, "because MapAsync can handle a static method");
+        }
+
+        [Test]
+        public async Task MapAsync_HandlesLambdaExpressions()
+        {
+            (await 12.MapAsync(x => x * 2)).Should().Be(24, "because MapAsync can handle a lambda expression");
+        }
+
+        [Test]
+        public async Task MapAsync_HandlesMappingAnIEnumberableToAnotherType()
+        {
+            (await new[] { 1, 2, 3 }.MapAsync(arr => arr.Aggregate((a, b) => a + b)))
+                .Should().Be(6, "because MapAsync can map an IEnumerable<T> to a non-enumerable type");
+
+            (await new[] { 'a', 'b', 'c' }.MapAsync(arr => new string(arr)))
+                .Should().Be("abc", "because MapAsync can map an IEnumerable<char> to string");
+
+            (await new[] { 1, 2, 3 }.MapAsync(arr => new List<int>(arr)))
+                .Should().BeOfType<List<int>>("because MapAsync can map an IEnumerable<T> to another IEnumerable<T> implementation");
         }
 
         #endregion

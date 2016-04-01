@@ -1,4 +1,6 @@
-﻿namespace System
+﻿using System.Threading.Tasks;
+
+namespace System
 {
     /// <summary>
     /// Provides some functional capabilities to all types
@@ -25,6 +27,27 @@
         /// </example>
         public static TResult Map<TSource, TResult>(this TSource source, Func<TSource, TResult> transform)
             => transform(source);
+
+        /// <summary>
+        /// Asynchronously maps an object of type TSource to an object of type TResult by applying the supplied function to it
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source object</typeparam>
+        /// <typeparam name="TResult">The type of the result object</typeparam>
+        /// <param name="source">The source object</param>
+        /// <param name="transform">The function to apply to the source object</param>
+        /// <returns>The result of the provided function applied to the source object</returns>
+        /// <example>
+        /// Parse an integer from a string
+        /// <code>
+        /// int number = await "123".MapAsync(int.Parse);  // number == 123
+        /// </code>
+        /// Double a number
+        /// <code>
+        /// int number = await 12.MapAsync(x => x * 2);    // number == 24
+        /// </code>
+        /// </example>
+        public static async Task<TResult> MapAsync<TSource, TResult>(this TSource source, Func<TSource, TResult> transform)
+            => await Task.Run(() => transform(source));
 
         /// <summary>
         /// Performs an action on an object and returns the object (e.g. writing it to the console or a log
