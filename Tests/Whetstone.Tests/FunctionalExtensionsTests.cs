@@ -88,6 +88,27 @@ namespace Whetstone.Tests
 
         #endregion
 
+        #region TeeAsync() tests
+
+        [Test]
+        public async Task TeeAsync_ReturnsTheInputObject()
+        {
+            (await "Hello".TeeAsync(Console.WriteLine))
+                .Should().Be("Hello", "because TeeAsync returns the input object");
+        }
+
+        [Test]
+        public async Task TeeAsync_PerformsActions()
+        {
+            var destination = string.Empty;
+            Action<string> copy = s => destination = s;
+
+            await "Hello".TeeAsync(copy);
+            destination.Should().Be("Hello", "because TeeAsync performs the provided action");
+        }
+
+        #endregion
+
         #region When() tests
 
         [Test]

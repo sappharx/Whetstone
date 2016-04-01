@@ -50,7 +50,7 @@ namespace System
             => await Task.Run(() => transform(source));
 
         /// <summary>
-        /// Performs an action on an object and returns the object (e.g. writing it to the console or a log
+        /// Performs an action on an object and returns the object (e.g. writing it to the console or a log)
         /// </summary>
         /// <typeparam name="T">The type of object to be acted upon</typeparam>
         /// <param name="this">The object to be acted upon</param>
@@ -65,6 +65,25 @@ namespace System
         public static T Tee<T>(this T @this, Action<T> action)
         {
             action(@this);
+            return @this;
+        }
+
+        /// <summary>
+        /// Performs an asynchronous action on an object and returns the object (e.g. writing it to the console or a log)
+        /// </summary>
+        /// <typeparam name="T">The type of object to be acted upon</typeparam>
+        /// <param name="this">The object to be acted upon</param>
+        /// <param name="action">The action to perform on the object</param>
+        /// <returns>The object that was acted upon</returns>
+        /// <example>
+        /// Write an object to the console
+        /// <code>
+        /// await "Hello world".TeeAsync(Console.WriteLine);
+        /// </code>
+        /// </example>
+        public static async Task<T> TeeAsync<T>(this T @this, Action<T> action)
+        {
+            await Task.Run(() => action(@this));
             return @this;
         }
 
