@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace System
 {
@@ -57,7 +60,7 @@ namespace System
         /// Performs an action on an object and returns the object (e.g. writing it to the console or a log)
         /// </summary>
         /// <typeparam name="T">The type of object to be acted upon</typeparam>
-        /// <param name="this">The object to be acted upon</param>
+        /// <param name="source">The object to be acted upon</param>
         /// <param name="action">The action to perform on the object</param>
         /// <returns>The object that was acted upon</returns>
         /// <example>
@@ -66,17 +69,17 @@ namespace System
         /// "Hello world".Tee(Console.WriteLine);
         /// </code>
         /// </example>
-        public static T Tee<T>(this T @this, Action<T> action)
+        public static T Tee<T>(this T source, Action<T> action)
         {
-            action(@this);
-            return @this;
+            action(source);
+            return source;
         }
 
         /// <summary>
         /// Performs an asynchronous action on an object and returns the object (e.g. writing it to the console or a log)
         /// </summary>
         /// <typeparam name="T">The type of object to be acted upon</typeparam>
-        /// <param name="this">The object to be acted upon</param>
+        /// <param name="source">The object to be acted upon</param>
         /// <param name="action">The action to perform on the object</param>
         /// <returns>The object that was acted upon</returns>
         /// <remarks>
@@ -89,10 +92,56 @@ namespace System
         /// await "Hello world".TeeAsync(Console.WriteLine);
         /// </code>
         /// </example>
-        public static async Task<T> TeeAsync<T>(this T @this, Action<T> action)
+        public static async Task<T> TeeAsync<T>(this T source, Action<T> action)
         {
-            await Task.Run(() => action(@this));
-            return @this;
+            await Task.Run(() => action(source));
+            return source;
+        }
+
+        /// <summary>
+        /// Performs an action on each object in a list and returns the list (e.g. writing items to the console or a log)
+        /// </summary>
+        /// <typeparam name="T">The type of objects to be acted upon</typeparam>
+        /// <param name="source">The list of objects to be acted upon</param>
+        /// <param name="action">The action to perform on each object</param>
+        /// <returns>The list of objects that were acted upon</returns>
+        /// <example>
+        /// Write a list of objects to the console
+        /// <code>
+        /// new[] {1, 2, 3}.TeeEach(Console.WriteLine);
+        /// </code>
+        /// </example>
+        public static IList<T> TeeEach<T>(this IList<T> source, Action<T> action)
+        {
+            foreach (var item in source)
+                action(item);
+
+            return source;
+        }
+
+        /// <summary>
+        /// Performs an asynchronous action on each object in a list and returns the list (e.g. writing items to the console or a log)
+        /// </summary>
+        /// <typeparam name="T">The type of objects to be acted upon</typeparam>
+        /// <param name="source">The list of objects to be acted upon</param>
+        /// <param name="action">The action to perform on each object</param>
+        /// <returns>The list of objects that were acted upon</returns>
+        /// <remarks>
+        /// This method makes the most sense when the action is CPU-intensive;
+        /// if it's IO-bound, it might make more sense to pass an async function to the sync version of this method.
+        /// </remarks>
+        /// <example>
+        /// Write a list of objects to the console
+        /// <code>
+        /// await new[] {1, 2, 3}.TeeEachAsync(Console.WriteLine);
+        /// </code>
+        /// </example>
+        public static async Task<IList<T>> TeeEachAsync<T>(this IList<T> source, Action<T> action)
+        {
+            foreach (var item in source)
+                await Task.Run(() => action(item));
+
+            return source;
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -27,10 +28,10 @@ namespace Whetstone.Tests
         [Test]
         public void Map_HandlesMappingAnIEnumberableToAnotherType()
         {
-            new[] {1, 2, 3}.Map(arr => arr.Aggregate((a, b) => a + b))
+            new[] { 1, 2, 3 }.Map(arr => arr.Aggregate((a, b) => a + b))
                 .Should().Be(6, "because Map can map an IEnumerable<T> to a non-enumerable type");
 
-            new[] {'a', 'b', 'c'}.Map(arr => new string(arr))
+            new[] { 'a', 'b', 'c' }.Map(arr => new string(arr))
                 .Should().Be("abc", "because Map can map an IEnumerable<char> to string");
 
             new[] { 1, 2, 3 }.Map(arr => new List<int>(arr))
@@ -73,7 +74,8 @@ namespace Whetstone.Tests
         [Test]
         public void Tee_ReturnsTheInputObject()
         {
-            "Hello".Tee(Console.WriteLine).Should().Be("Hello", "because Tee returns the input object");
+            "Hello".Tee(Console.WriteLine)
+                .Should().Be("Hello", "because Tee returns the input object");
         }
 
         [Test]
@@ -105,6 +107,68 @@ namespace Whetstone.Tests
 
             await "Hello".TeeAsync(copy);
             destination.Should().Be("Hello", "because TeeAsync performs the provided action");
+        }
+
+        #endregion
+
+        #region TeeEach() tests
+
+        [Test]
+        public void TeeEach_ReturnsTheInputObject()
+        {
+            var list = new List<int> {1, 2, 3};
+            list.TeeEach(Console.WriteLine)
+                .Should().BeSameAs(list, "because TeeEach returns the input object");
+
+            var array = new[] {1, 2, 3};
+            array.TeeEach(Console.WriteLine)
+                .Should().BeSameAs(array, "because TeeEach returns the input object");
+
+            var roc = new ReadOnlyCollection<int>(list);
+            roc.TeeEach(Console.WriteLine)
+                .Should().BeSameAs(roc, "because TeeEach returns the input object");
+        }
+
+        [Test]
+        public void TeeEach_PerformsActions()
+        {
+            var dict = new Dictionary<char, int> { {'a', 0}, {'b', 0} };
+
+            new[] {'a', 'b'}.TeeEach(c => dict[c] = 42);
+
+            dict['a'].Should().Be(42, "because TeeEach performs the provided action");
+            dict['b'].Should().Be(42, "because TeeEach performs the provided action");
+        }
+
+        #endregion
+
+        #region TeeEachAsync() tests
+
+        [Test]
+        public async Task TeeEachAsync_ReturnsTheInputObject()
+        {
+            var list = new List<int> {1, 2, 3};
+            (await list.TeeEachAsync(Console.WriteLine))
+                .Should().BeSameAs(list, "because TeeEachAsync returns the input object");
+
+            var array = new[] {1, 2, 3};
+            (await array.TeeEachAsync(Console.WriteLine))
+                .Should().BeSameAs(array, "because TeeEachAsync returns the input object");
+
+            var roc = new ReadOnlyCollection<int>(list);
+            (await roc.TeeEachAsync(Console.WriteLine))
+                .Should().BeSameAs(roc, "because TeeEachAsync returns the input object");
+        }
+
+        [Test]
+        public async Task TeeEachAsync_PerformsActions()
+        {
+            var dict = new Dictionary<char, int> { {'a', 0}, {'b', 0} };
+
+            await new[] { 'a', 'b' }.TeeEachAsync(c => dict[c] = 42);
+
+            dict['a'].Should().Be(42, "because TeeEachAsync performs the provided action");
+            dict['b'].Should().Be(42, "because TeeEachAsync performs the provided action");
         }
 
         #endregion
