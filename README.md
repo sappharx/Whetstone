@@ -1,14 +1,17 @@
 # Whetstone
 
-[![License](
-http://img.shields.io/:license-mit-blue.svg)](
-http://vsisk.mit-license.org)
-[![Build status](
-https://ci.appveyor.com/api/projects/status/fsrvcqeallu5uft0?svg=true)](
+[![AppVeyor](
+https://img.shields.io/appveyor/ci/sappharx/Whetstone.svg?style=flat-square)](
 https://ci.appveyor.com/project/sappharx/whetstone)
-[![Coverage Status](
-https://coveralls.io/repos/github/sappharx/Whetstone/badge.svg?branch=master)](
+[![Coveralls](
+https://img.shields.io/coveralls/sappharx/Whetstone.svg?style=flat-square)](
 https://coveralls.io/github/sappharx/Whetstone?branch=master)
+[![NuGet](
+https://img.shields.io/nuget/v/Whetstone.svg?style=flat-square)](
+https://www.nuget.org/packages/Whetstone/)
+[![License](
+http://img.shields.io/:license-mit-blue.svg?style=flat-square)](
+http://vsisk.mit-license.org)
 
 Toolbox of functional extension methods and other useful tools for sharpening your .NET code
 
