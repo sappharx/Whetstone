@@ -16,6 +16,14 @@ namespace Whetstone.Tests
             Disposable.Using(GetReader, reader => reader.ReadToEnd())
                 .Should().Be("foo", "because Using() works properly");
         }
+        [Test]
+        public void Using_2disposables_WorksProperly()
+        {
+            CreateTestFile();
+
+            Disposable.Using(GetReader, GetReader, (reader1, reader2) => reader1.ReadToEnd() + reader2.ReadToEnd())
+                .Should().Be("foofoo", "because Using() works properly");
+        }
 
         private static StreamReader GetReader()
             => new StreamReader("test.txt");
