@@ -6,6 +6,36 @@
     public static class Disposable
     {
         /// <summary>
+        /// Abstracts a using statement when you just need to perform an action on an <see cref="IDisposable"/> object
+        /// </summary>
+        /// <typeparam name="TDisposable">The type of the <see cref="IDisposable"/> object</typeparam>
+        /// <param name="factory">The function that creates the disposable object</param>
+        /// <param name="action">The action to perform with the disposable object</param>
+        /// <example>
+        /// Extract a zip archive to a directory
+        /// <code>
+        /// Disposable.Using(
+        ///     () => new ZipArchive(File.OpenRead("file.zip")), 
+        ///     archive => archive.ExtractToDirectory("backup"));
+        /// </code>
+        /// as opposed to
+        /// <code>
+        /// using(var archive = new ZipArchive(File.OpenRead("file.zip")))
+        /// {
+        ///     archive.ExtractToDirectory("backup");
+        /// }
+        /// </code>
+        /// </example>
+        public static void Using<TDisposable>(Func<TDisposable> factory, Action<TDisposable> action)
+            where TDisposable : IDisposable
+        {
+            using (var disposable = factory())
+            {
+                action(disposable);
+            }
+        }
+
+        /// <summary>
         /// Abstracts a using statement when you just need to obtain a value from an <see cref="IDisposable"/> object
         /// </summary>
         /// <typeparam name="TDisposable">The type of the <see cref="IDisposable"/> object</typeparam>

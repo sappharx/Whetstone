@@ -9,6 +9,18 @@ namespace Whetstone.Tests
     public class DisposableTests
     {
         [Test]
+        public void Using_Action_WorksProperly()
+        {
+            string str = null;
+
+            CreateTestFile();
+
+            Disposable.Using(GetReader, reader => { str = reader.ReadToEnd(); });
+
+            str.Should().Be("foo", "because Using() works properly");
+        }
+
+        [Test]
         public void Using_WorksProperly()
         {
             CreateTestFile();
